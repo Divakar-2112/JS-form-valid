@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;   
+    display: flex;
+    justify-content: space-evenly;
+}
+h2 {
+    color: #333;
+    text-align: center;
+}
+.userform {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.userform label {
+    font-weight: bold;
+    color: #333;
+}
+#name,#mail,#age,#password{
+    width: 97%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    background-color: #3333330a;
+}
+input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+#invitemail{
+    width: 50%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #3333330a;
+}
+#role,#dob,#country{
+    width: 20%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    background-color: #3333330a;
+}
+#gender,#skill {
+    margin-right: 5px;
+}
+.userform select {
+    padding: 10px;
+    font-size: 14px;
+}
+#addmail{
+    background-color: #2ec72e;
+    color: white;
+    width: 20%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+    margin-top: 10px;
+    align-self: center;
+}
+#addmail:hover {
+    background-color: #037e2c;
+}
+#submit {
+    background-color: #2ec72e;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+    margin-top: 10px;
+    align-self: center;
+}
+#submit:hover {
+    background-color: #037e2c;
+}
+#emailList li{
+    display: flex;
+    justify-content: space-evenly;   
+}
+ul{
+    padding: 0px;
+}
+li {
+    background: #ddd;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    list-style: none;
+}
+a{
+    color: #0105c7;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+a:hover{
+    color: red;
+}

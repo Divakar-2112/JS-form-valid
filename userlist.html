@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    text-align: left;
+    
+}
+
+table th{
+    border: 2px solid rgba(0, 0, 0, 0.247);
+    padding: 12px;
+}
+
+#header {
+    background-color: #04f5d5;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    color: black;
+    
+
+}
+
+#header:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    margin: 600px;
+    color: rgb(39, 0, 182);
+    font-weight: 600;
+}
+a:hover{
+    color: red;
+}
+td button{
+    background-color: transparent;
+    color: black;
+    font-weight: bolder;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;    
+}
+td{
+    border: 2px solid rgba(0, 0, 0, 0.247);
+}
+#bodylist{
+    text-align: center;
+    border: 2px solid black;
+    
+}
+    </style>
+    <h2>Invite userlist</h2>
+    <table>
+        <thead id="header">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Date of birth</th>
+            <th>Country</th>
+            <th>Invited Mail</th>
+            <th>Delete</th>
+        </thead>
+        <tbody id="bodylist">
+            
+        </tbody>
+    </table>
+    <a href="index.html">Back to form</a>
+    <script src="script.js"></script>
+</body>
+</html>

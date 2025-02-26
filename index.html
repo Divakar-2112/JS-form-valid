@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-content">
+        <h2>Dynamic Form</h2>
+    <form class="userform">
+        <label for="name">Name:<input type="text" id="name" placeholder="Enter a Name" required></label>
+        <label for="mail">Email:<input type="mail" id="mail" placeholder="Enter a Mail" required></label>
+        <label for="Age">Age:<input type="number" id="age" placeholder="Enter a Age" required></label>
+        <label for="Password">Password:<input type="password" id="password" placeholder="Enter a password" required></label>
+        <label for="Role">Role:</label>
+            <select id="role" name="role" >
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+                <option value="Guest">Guest</option>
+            </select>
+        <label for="Gender" id="gender">Gender:
+            <input type="radio" name="Gender" value="male">Male
+            <input type="radio" name="Gender" value="Female">Female 
+        </label>
+        <label for="Skill" id="skill">Skill:
+            <input type="checkbox" name="Skill">Javascript
+            <input type="checkbox" name="Skill">Python
+            <input type="checkbox" name="Skill">c++
+        </label>
+        <label for="dob">Date of birth:<input type="date" id="dob" required> </label>
+        <label for="country">Choose a country:</label>
+            <select id="country" name="country" >
+                <option value="india">India</option>
+                <option value="us">US</option>
+                <option value="uk">UK</option>
+                <option value="china">China</option>
+            </select>
+            <label for="invitemail">Invite Email:<input type="email" id="invitemail"> <button type="button" id="addmail"> Add Email</button><ul id="emailList"></ul></label>
+            <button id="submit">submit</button>
+    </form>
+    <a href="userlist.html">Show Userlist</a>
+    </div>
+    
+    <script src="script.js"></script>
+    
+</body> 
+</html>
