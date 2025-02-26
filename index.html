@@ -11,12 +11,12 @@
     <div class="main-content">
         <h2>Dynamic Form</h2>
     <form class="userform">
-        <label for="name">Name:<input type="text" id="name" placeholder="Enter a Name" required></label>
-        <label for="mail">Email:<input type="mail" id="mail" placeholder="Enter a Mail" required></label>
-        <label for="Age">Age:<input type="number" id="age" placeholder="Enter a Age" required></label>
-        <label for="Password">Password:<input type="password" id="password" placeholder="Enter a password" required></label>
+        <label for="name">Name:<input type="text" id="name" class="inputs" placeholder="Enter a Name" required></label>
+        <label for="mail">Email:<input type="mail" id="mail" class="inputs" placeholder="Enter a Mail" required></label>
+        <label for="Age">Age:<input type="number" id="age" class="inputs" placeholder="Enter a Age" required></label>
+        <label for="Password">Password:<input type="password" class="inputs" id="password" placeholder="Enter a password" required></label>
         <label for="Role">Role:</label>
-            <select id="role" name="role" >
+            <select id="role" name="role" class="inputs">
                 <option value="Admin">Admin</option>
                 <option value="User">User</option>
                 <option value="Guest">Guest</option>
@@ -30,7 +30,7 @@
             <input type="checkbox" name="Skill">Python
             <input type="checkbox" name="Skill">c++
         </label>
-        <label for="dob">Date of birth:<input type="date" id="dob" required> </label>
+        <label for="dob">Date of birth:<input type="date" class="inputs" id="dob" required> </label>
         <label for="country">Choose a country:</label>
             <select id="country" name="country" >
                 <option value="india">India</option>
@@ -38,8 +38,8 @@
                 <option value="uk">UK</option>
                 <option value="china">China</option>
             </select>
-            <label for="invitemail">Invite Email:<input type="email" id="invitemail"> <button type="button" id="addmail"> Add Email</button><ul id="emailList"></ul></label>
-            <button id="submit">submit</button>
+            <label for="invitemail">Invite Email:<input type="email" class="inputs" id="invitemail"> <button type="button" id="addmail"> Add Email</button><ul id="emailList"></ul></label>
+            <button id="submit" class="inputs">submit</button>
     </form>
     <a href="userlist.html">Show Userlist</a>
     </div>

@@ -73,16 +73,16 @@ if(document.getElementById("submit")){
         }
        
         let userData = {
-            userName: document.getElementById("name")?.value.trim() || "",
-            userMail: document.getElementById("mail")?.value.trim() || "",
-            userAge: document.getElementById("age")?.value.trim() || "",
-            userPassword: document.getElementById("password")?.value.trim() || "",
-            userRole: document.getElementById("role")?.value.trim() || "",
-            userGender: document.querySelector('input[name="Gender"]:checked')?.value || "",
+            userName: document.getElementById("name").value || "",
+            userMail: document.getElementById("mail").value || "",
+            userAge: document.getElementById("age").value|| "",
+            userPassword: document.getElementById("password").value || "",
+            userRole: document.getElementById("role").value|| "",
+            userGender: document.querySelector('input[name="Gender"]:checked').value || "",
             userSkill: Array.from(document.querySelectorAll('input[name="Skill"]:checked') || [])
-                .map(skill => skill.nextSibling?.textContent.trim() || ""),
-            userDob: document.getElementById("dob")?.value || "",
-            userCountry: document.getElementById("country")?.value.trim() || "",
+                .map(skill => skill.nextSibling?.textContent || ""),
+            userDob: document.getElementById("dob").value || "",
+            userCountry: document.getElementById("country").value || "",
             userInviteMail: [...inviteEmails] 
         };
         let arrayData=JSON.parse(localStorage.getItem("userData")) || [];
@@ -98,9 +98,7 @@ if(document.getElementById("submit")){
         
         database();
         emailList.innerHTML = '';
-        userform.reset();
-
-         
+        userform.reset();        
         
     });
     
