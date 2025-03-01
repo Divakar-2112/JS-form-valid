@@ -72,27 +72,19 @@ if(document.getElementById("submit")){
             }
         }
        
-        let userData = {
-            userName: document.getElementById("name").value || "",
-            userMail: document.getElementById("mail").value || "",
-            userAge: document.getElementById("age").value|| "",
-            userPassword: document.getElementById("password").value || "",
-            userRole: document.getElementById("role").value|| "",
-            userGender: document.querySelector('input[name="Gender"]:checked').value || "",
-            userSkill: Array.from(document.querySelectorAll('input[name="Skill"]:checked') || [])
-                .map(skill => skill.nextSibling?.textContent || ""),
-            userDob: document.getElementById("dob").value || "",
-            userCountry: document.getElementById("country").value || "",
-            userInviteMail: [...inviteEmails] 
-        };
-        let arrayData=JSON.parse(localStorage.getItem("userData")) || [];
-        if(!Array.isArray(arrayData)){
-            arrayData=[];
-        }
-
-        arrayData.push(userData);
+        let userName=document.getElementById("name");
+        let userMail=document.getElementById("mail");
+        let userAge=document.getElementById("age");
+        let userPassword=document.getElementById("password");
+        let userRole=document.getElementById("role");
+        let userDob=document.getElementById("dob");
+        let userCountry=document.getElementById("country");
+        let mails=inviteEmails.join(",");
+        
+        let arrayData=JSON.parse(localStorage.getItem("userData")||"[]");
+        arrayData.push({name:userName.value,mail:userMail.value,age:userAge.value,password:userPassword.value,role:userRole.value,dateofbirth:userDob.value,country:userCountry.value,invitemail:mails})
         localStorage.setItem("userData", JSON.stringify(arrayData));
-        console.log("User data saved:", arrayData);
+        // console.log("User data saved:", arrayData);
     
         alert("User data saved successfully!");
         
@@ -105,26 +97,25 @@ if(document.getElementById("submit")){
 }
 
 function database() {
-    let userDataArray = JSON.parse(localStorage.getItem("userData")) || [];
+    let userDataArray = JSON.parse(localStorage.getItem("userData"))|| [];
     let bodylist=document.getElementById("bodylist");
     if(!bodylist){
         return;
     }
     bodylist.innerHTML="";
 
-userDataArray.forEach(userData => {
+userDataArray.forEach((userData) => {
     let row = document.createElement("tr");
-    
 
     let fields = [
-        userData.userName,
-        userData.userMail,
-        userData.userAge,
-        userData.userPassword,
-        userData.userRole,
-        userData.userDob,
-        userData.userCountry,
-        Array.isArray(userData.userInviteMail) ? userData.userInviteMail.join(", ") : "",
+        userData.name,
+        userData.mail,
+        userData.age,
+        userData.password,
+        userData.role,
+        userData.dateofbirth,
+        userData.country,
+        userData.invitemail
         
     ];
 
@@ -137,10 +128,13 @@ userDataArray.forEach(userData => {
         let deleteCell = document.createElement("td");
         let deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
-        
-        deleteButton.addEventListener("click",(index)=>{
+       
+        deleteButton.addEventListener("click",()=>{
+            let index=userDataArray.findIndex(c=>{
+                return c.name==userData.name
+            })
             row.remove();
-            let userDataArray = JSON.parse(localStorage.getItem("userData")) || [];
+            userDataArray = JSON.parse(localStorage.getItem("userData")) || [];
             userDataArray.splice(index, 1);
             localStorage.setItem("userData", JSON.stringify(userDataArray));
         })
