@@ -1,32 +1,33 @@
-let inviteEmails = []; 
+let inviteEmails = [];
 
-if(document.getElementById("addmail")){
+if (document.getElementById("addmail")) {
     document.getElementById("addmail").addEventListener("click", function () {
         let inviteMailInput = document.getElementById("invitemail");
         let inviteMail = inviteMailInput.value;
-    
+        
+
         if (inviteMail === "") {
             alert("Please enter an email before adding.");
             return;
         }
-    
+
         let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(inviteMail)) {
             alert("Please enter a valid email address.");
             return;
         }
-    
+
         if (inviteEmails.includes(inviteMail)) {
             alert("This email has already been added.");
             return;
         }
-    
+
         inviteEmails.push(inviteMail);
-        displayInviteMail(inviteMail); 
+        displayInviteMail(inviteMail);
         inviteMailInput.value = "";
-        
+
     });
-    
+
 }
 
 function displayInviteMail(inviteMail) {
@@ -49,7 +50,7 @@ function displayInviteMail(inviteMail) {
         icon.style.display = "none";
     });
 
-    icon.addEventListener("click", () => {        
+    icon.addEventListener("click", () => {
         emailListContent.remove();
         inviteEmails = inviteEmails.filter(email => email !== inviteMail);
     });
@@ -57,92 +58,146 @@ function displayInviteMail(inviteMail) {
     emailListContent.appendChild(icon);
     emailList.appendChild(emailListContent);
 }
-
-let userform=document.querySelector(".userform");
+let userform = document.querySelector(".userform");
 let inputFields = document.getElementsByTagName("input");
 
-if(document.getElementById("submit")){
-    document.getElementById("submit").addEventListener("click", function(event) {
-        event.preventDefault();
+if (document.getElementById("submit")) {
+    document.getElementById("submit").addEventListener("click", function (e) {
+        e.preventDefault();
 
-        for (let input of inputFields) {
-            if (input.hasAttribute("required") && input.value === "") {
-                alert("Please fill in all required fields.");
-                return;
+        function validation() {
+            let names = document.getElementById("name");
+            let age = document.getElementById("age");
+            let pass = document.getElementById("password");
+            let dateOfBirth = document.getElementById("dob");
+        
+            document.getElementById("name-error").textContent = "";
+            document.getElementById("dob-error").textContent = "";
+            document.getElementById("age-error").textContent = "";
+            document.getElementById("password-error").textContent = "";
+        
+            let isValid = true;  
+        
+            
+            let nameRegex = /^[A-Za-z\s]{1,30}$/;
+            if (!nameRegex.test(names.value.trim())) {
+                document.getElementById("name-error").textContent = 
+                    "Name must be 1-30 letters and contain only alphabets.";
+                isValid = false;
             }
+        
+            let validAge = /^[1-9][0-9]?$/; 
+            if (!validAge.test(age.value.trim())) { 
+                document.getElementById("age-error").textContent =
+                    "Please enter a valid age (1-99).";
+                isValid = false;
+            }
+        
+            let passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+            if (!passRegex.test(pass.value.trim())) {
+                document.getElementById("password-error").textContent =
+                    "Password must have 8+ chars, 1 uppercase, 1 number, 1 special char.";
+                isValid = false;
+            }
+        
+            let today = new Date();
+            let bDate = new Date(dateOfBirth.value);
+            let ageDate = today.getFullYear() - bDate.getFullYear();
+            let monthDiff = today.getMonth() - bDate.getMonth();
+            let dayDiff = today.getDate() - bDate.getDate();
+            
+            if (ageDate < 18 || (ageDate === 18 && monthDiff < 0) || (ageDate === 18 && monthDiff === 0 && dayDiff < 0)) {
+                document.getElementById("dob-error").textContent = 
+                    "You must be at least 18 years old.";
+                isValid = false;
+            }
+        
+            return isValid;  
         }
        
-        let userName=document.getElementById("name");
-        let userMail=document.getElementById("mail");
-        let userAge=document.getElementById("age");
-        let userPassword=document.getElementById("password");
-        let userRole=document.getElementById("role");
-        let userDob=document.getElementById("dob");
-        let userCountry=document.getElementById("country");
-        let mails=inviteEmails.join(",");
-        
-        let arrayData=JSON.parse(localStorage.getItem("userData")||"[]");
-        arrayData.push({name:userName.value,mail:userMail.value,age:userAge.value,password:userPassword.value,role:userRole.value,dateofbirth:userDob.value,country:userCountry.value,invitemail:mails})
+        if (validation()) {
+            alert("Form submitted successfully!");
+        }
+        else{
+            return;
+        }
+
+        let userName = document.getElementById("name");
+        let userMail = document.getElementById("mail");
+        let userAge = document.getElementById("age");
+        let userPassword = document.getElementById("password");
+        let userRole = document.getElementById("role");
+        let userDob = document.getElementById("dob");
+        let userCountry = document.getElementById("country");
+        let mails = inviteEmails.join(",");
+
+        let arrayData = JSON.parse(localStorage.getItem("userData") || "[]");
+        arrayData.push({
+            name: userName.value,
+            mail: userMail.value,
+            age: userAge.value,
+            password: userPassword.value,
+            role: userRole.value,
+            dateofbirth: userDob.value,
+            country: userCountry.value,
+            invitemail: mails
+        });
+
         localStorage.setItem("userData", JSON.stringify(arrayData));
-        // console.log("User data saved:", arrayData);
-    
-        alert("User data saved successfully!");
-        
-        database();
+        // alert("User data saved successfully!");
+
+        userform.reset(); 
         emailList.innerHTML = '';
-        userform.reset();        
-        
     });
-    
 }
 
 function database() {
-    let userDataArray = JSON.parse(localStorage.getItem("userData"))|| [];
-    let bodylist=document.getElementById("bodylist");
-    if(!bodylist){
+    let userDataArray = JSON.parse(localStorage.getItem("userData")) || [];
+    let bodylist = document.getElementById("bodylist");
+    if (!bodylist) {
         return;
     }
-    bodylist.innerHTML="";
+    bodylist.innerHTML = "";
 
-userDataArray.forEach((userData) => {
-    let row = document.createElement("tr");
+    userDataArray.forEach((userData) => {
+        let row = document.createElement("tr");
 
-    let fields = [
-        userData.name,
-        userData.mail,
-        userData.age,
-        userData.password,
-        userData.role,
-        userData.dateofbirth,
-        userData.country,
-        userData.invitemail
-        
-    ];
+        let fields = [
+            userData.name,
+            userData.mail,
+            userData.age,
+            userData.password,
+            userData.role,
+            userData.dateofbirth,
+            userData.country,
+            userData.invitemail
 
-    fields.forEach(field => {
-        let cell = document.createElement("td");
-        cell.textContent = field;
-        row.appendChild(cell);
+        ];
 
-    });
+        fields.forEach(field => {
+            let cell = document.createElement("td");
+            cell.textContent = field;
+            row.appendChild(cell);
+
+        });
         let deleteCell = document.createElement("td");
         let deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
-       
-        deleteButton.addEventListener("click",()=>{
-            let index=userDataArray.findIndex(c=>{
-                return c.name==userData.name
+
+        deleteButton.addEventListener("click", () => {
+            let index = userDataArray.findIndex(c => {
+                return c.name == userData.name
             })
             row.remove();
             userDataArray = JSON.parse(localStorage.getItem("userData")) || [];
             userDataArray.splice(index, 1);
             localStorage.setItem("userData", JSON.stringify(userDataArray));
         })
-    
-    deleteCell.appendChild(deleteButton);
-    row.appendChild(deleteCell);
-    bodylist.appendChild(row);
-});
+
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+        bodylist.appendChild(row);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", database);

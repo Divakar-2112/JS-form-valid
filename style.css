@@ -121,3 +121,8 @@ a{
 a:hover{
     color: red;
 }
+.alert {
+    color: red;
+    font-size: 12px;
+    margin-top: 0px;
+}
