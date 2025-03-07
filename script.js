@@ -70,12 +70,18 @@ if (document.getElementById("submit")) {
             let age = document.getElementById("age");
             let pass = document.getElementById("password");
             let dateOfBirth = document.getElementById("dob");
+            let inputmail=document.getElementById("mail");
         
             document.getElementById("name-error").textContent = "";
             document.getElementById("dob-error").textContent = "";
             document.getElementById("age-error").textContent = "";
             document.getElementById("password-error").textContent = "";
-        
+            document.getElementById("mail-error").textContent = "";
+            document.getElementById("name").style.border = "2px solid #ccc";
+            document.getElementById("dob").style.border = "2px solid #ccc";
+            document.getElementById("age").style.border = "2px solid #ccc";
+            document.getElementById("password").style.border = "2px solid #ccc";
+            document.getElementById("mail").style.border = "2px solid #ccc";
             let isValid = true;  
         
             
@@ -83,13 +89,23 @@ if (document.getElementById("submit")) {
             if (!nameRegex.test(names.value.trim())) {
                 document.getElementById("name-error").textContent = 
                     "Name must be 1-30 letters and contain only alphabets.";
+                    document.getElementById("name").style.border="2px solid red";
                 isValid = false;
+            }
+
+            let validmail=/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+            if(!validmail.test(inputmail.value.trim())){
+                document.getElementById("mail-error").textContent = 
+                "Please enter a valid mail";
+                document.getElementById("mail").style.border="2px solid red";
+                isValid =false;
             }
         
             let validAge = /^[1-9][0-9]?$/; 
             if (!validAge.test(age.value.trim())) { 
                 document.getElementById("age-error").textContent =
                     "Please enter a valid age (1-99).";
+                    document.getElementById("age").style.border="2px solid red";
                 isValid = false;
             }
         
@@ -97,6 +113,7 @@ if (document.getElementById("submit")) {
             if (!passRegex.test(pass.value.trim())) {
                 document.getElementById("password-error").textContent =
                     "Password must have 8+ chars, 1 uppercase, 1 number, 1 special char.";
+                    document.getElementById("password").style.border="2px solid red";
                 isValid = false;
             }
         
@@ -109,6 +126,7 @@ if (document.getElementById("submit")) {
             if (ageDate < 18 || (ageDate === 18 && monthDiff < 0) || (ageDate === 18 && monthDiff === 0 && dayDiff < 0)) {
                 document.getElementById("dob-error").textContent = 
                     "You must be at least 18 years old.";
+                    document.getElementById("dob").style.border="2px solid red";
                 isValid = false;
             }
         
